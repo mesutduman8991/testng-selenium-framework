@@ -13,9 +13,8 @@ import static org.testng.Assert.assertEquals;
 
 public class PageHeadersTests extends TestBase {
 
-    @Test
-    public void pageHeadersTest(){
-        LoginPage loginPage = new LoginPage();
+    /*
+     LoginPage loginPage = new LoginPage();
         ViewAllProductsPage viewAllProductsPage = new ViewAllProductsPage();
         ViewAllOrdersPage viewAllOrdersPage = new ViewAllOrdersPage();
         OrderPage orderPage = new OrderPage();
@@ -28,7 +27,23 @@ public class PageHeadersTests extends TestBase {
         viewAllProductsPage.orderLink.click();
         assertEquals(orderPage.header.getText(), ApplicationConstants.ORDER);
 
+     */
+    @Test
+    public void pageHeadersTest(){
+
+        pages.login().login(ConfigurationReader.getProperty("username"),
+                ConfigurationReader.getProperty("password"));
+        assertEquals(pages.viewAllOrders().header.getText(), ApplicationConstants.LIST_OF_ALL_ORDERS);
+        pages.viewAllOrders().viewAllProductsLink.click();
+        assertEquals(pages.viewAllProducts().header.getText(), ApplicationConstants.LIST_OF_ALL_PRODUCTS);
+        pages.viewAllProducts().orderLink.click();
+        assertEquals(pages.order().header.getText(), ApplicationConstants.ORDER);
+
 
     }
 
 }
+
+
+
+
